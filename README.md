@@ -18,6 +18,8 @@
 
 ### Scripts for generating the database, database migration and database seeding
 
+creating user Model through cli
+
 ```bash
 
 ```
