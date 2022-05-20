@@ -17,7 +17,14 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 //setting up to allow all cors and origin
-app.use(cors());
+app.use(function (req, res, next) {
+  cors({
+    origin: "*",
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+    credentials: true,
+  });
+  next();
+});
 
 app.use(logger("dev"));
 app.use(express.json());
