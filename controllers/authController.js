@@ -56,14 +56,23 @@ exports.postRegister = async (req, res, next) => {
       });
     }
 
+    //check if username is already taken
+    let user_Name = await User.findOne({ where: { userName: userName } });
+    if (user_Name) {
+      return res.status(400).json({
+        statusMessage: "Error",
+        message: "Username is already taken",
+      });
+    }
+
     //check if email already exists
-    const user = await User.findOne({
+    const userEmail = await User.findOne({
       where: {
         email: email,
       },
     });
     //if the email already exists
-    if (user) {
+    if (userEmail) {
       return res.status(400).json({
         statusMessage: "error",
         message: "Email already exists",
@@ -118,6 +127,89 @@ exports.postRegister = async (req, res, next) => {
   } catch (err) {
     return res.status(500).json({
       statusMessage: "Error",
+      successful: false,
+      errorMessage: err.message,
+      error: err,
+    });
+  }
+};
+
+//post login async await
+exports.postLogin = async (req, res, next) => {
+  try {
+    //destructure the req.body
+    let { email, password } = req.body;
+
+    //trim the email and password
+    email = email.trim();
+    password = password;
+
+    //check if the email or password is empty
+    if (!email || !password) {
+      return res.status(400).json({
+        status: "error",
+        successful: false,
+        message: "Please fill in all the fields",
+      });
+    }
+
+    //find the user
+    const user = await User.findOne({
+      where: {
+        email: email,
+      },
+    });
+
+    //if the user does not exist
+    if (!user) {
+      return res.status(400).json({
+        statusMessage: "Error",
+        successful: false,
+        message: "User does not exist",
+      });
+    }
+
+    //check if the password is correct
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(400).json({
+        statusMessage: "Error",
+        successful: false,
+        message: "Password is incorrect",
+      });
+    }
+
+    //if the user exists and the password is correct
+    if (user) {
+      console.log(user);
+      return res.status(200).json({
+        statusMessage: "Successful",
+        successful: true,
+        message: "User logged in",
+        responseObject: [
+          {
+            user_id: user.dataValues.id,
+            otp: 12545,
+            is_verified: user.dataValues.is_verified,
+            password: user.dataValues.password,
+            user_location: {
+              location_name: user.dataValues.location_name,
+              location_lat: user.dataValues.location_lat,
+              location_lng: user.dataValues.location_lng,
+            },
+            user_contacts: {
+              phone: user.dataValues.phone,
+              email: user.email,
+              website: user.dataValues.phone,
+            },
+          },
+        ],
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      statusMessage: "Error",
+      successful: false,
       errorMessage: err.message,
       error: err,
     });

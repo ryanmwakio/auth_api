@@ -10,9 +10,7 @@ router.get("/api/v1/register", function (req, res, next) {
 });
 
 //login routes
-router.post("/api/v1/login", function (req, res, next) {
-  res.render("index", { title: "Express" });
-});
+router.post("/api/v1/login", authController.postLogin);
 router.get("/api/v1/login", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
