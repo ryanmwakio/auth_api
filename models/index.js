@@ -15,6 +15,12 @@ sequelize = new Sequelize(process.env.DATABASE_URL, {
       require: true,
       rejectUnauthorized: false,
     },
+
+    underscore: true,
+    camelCase: true,
+    snake_case: true,
+    pascalCase: true,
+    timestamps: true,
   },
 });
 
