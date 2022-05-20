@@ -10,9 +10,12 @@ const db = {};
 
 let sequelize;
 
-sequelize = new Sequelize(
-  `postgres://swjkxydeljjgej:6837693454669aa918d74fb90c1244d1c102627431ceb2d3d07c8fe81191a13c@ec2-3-231-82-226.compute-1.amazonaws.com:5432/dd6rvo0sasqjp0`
-);
+sequelize = new Sequelize({
+  connectionString: `postgres://swjkxydeljjgej:6837693454669aa918d74fb90c1244d1c102627431ceb2d3d07c8fe81191a13c@ec2-3-231-82-226.compute-1.amazonaws.com:5432/dd6rvo0sasqjp0`,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
 fs.readdirSync(__dirname)
   .filter((file) => {
