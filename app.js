@@ -41,7 +41,8 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500).json({
-    statusMessage: "error",
+    statusMessage: "Error",
+    successful: false,
     statusCode: err.status || 500,
     errorMessage: err.message,
     error: err.stack,

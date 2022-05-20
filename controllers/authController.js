@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const axios = require("axios");
 
 const User = require("../models").User;
 
@@ -6,7 +7,18 @@ const User = require("../models").User;
 exports.postRegister = async (req, res, next) => {
   try {
     //destructure the req.body
-    let { name, email, password } = req.body;
+    let { name, email, password, location_name } = req.body;
+
+    //check if location_name is truthy
+    if (!location_name) {
+      location_name = "Nairobi, Kenya";
+    }
+
+    let url = `http://api.positionstack.com/v1/forward?access_key=${process.env.POSITIONSTACK_KEY}&query=${location_name}`;
+    let response = await axios.get(url);
+
+    let latitude = response.data.data[0].latitude;
+    let longitude = response.data.data[0].longitude;
 
     //trim the user_name and email
     userName = name.trim();
@@ -67,9 +79,9 @@ exports.postRegister = async (req, res, next) => {
       password: hashedPassword,
       userName: userName,
       is_verified: false,
-      location_name: "",
-      location_lat: 0,
-      location_lng: 0,
+      location_name: location_name,
+      location_lat: latitude || 0.0,
+      location_lng: longitude || 0.0,
       phone: "",
       website: "",
     });
@@ -79,13 +91,33 @@ exports.postRegister = async (req, res, next) => {
     if (newUser) {
       console.log(newUser);
       return res.status(201).json({
-        statusMessage: "successful",
         message: "User created!",
+        statusCode: 201,
+        successful: true,
+        statusMessage: "Successful",
+        responseObject: [
+          {
+            user_id: newUser.dataValues.id,
+            otp: 12545,
+            is_verified: newUser.dataValues.is_verified,
+            password: newUser.dataValues.password,
+            user_location: {
+              location_name: newUser.dataValues.location_name,
+              location_lat: newUser.dataValues.location_lat,
+              location_lng: newUser.dataValues.location_lng,
+            },
+            user_contacts: {
+              phone: newUser.dataValues.phone,
+              email: newUser.email,
+              website: newUser.dataValues.phone,
+            },
+          },
+        ],
       });
     }
   } catch (err) {
     return res.status(500).json({
-      statusMessage: "error",
+      statusMessage: "Error",
       errorMessage: err.message,
       error: err,
     });
