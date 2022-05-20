@@ -9,16 +9,11 @@ const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
-}
+
+sequelize = new Sequelize(
+  `postgres://swjkxydeljjgej:6837693454669aa918d74fb90c1244d1c102627431ceb2d3d07c8fe81191a13c@ec2-3-231-82-226.compute-1.amazonaws.com:5432/dd6rvo0sasqjp0`
+);
+
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
