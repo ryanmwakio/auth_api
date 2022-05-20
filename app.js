@@ -25,6 +25,10 @@ app.use(function (req, res, next) {
     //access control allow origin
     exposedHeaders: ["x-auth-token"],
   });
+  //access control allow headers
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  //access control allow origin
+  res.setHeader("Access-Control-Allow-Origin", "*");
   next();
 });
 
