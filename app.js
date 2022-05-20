@@ -22,6 +22,8 @@ app.use(function (req, res, next) {
     origin: "*",
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
     credentials: true,
+    //access control allow origin
+    exposedHeaders: ["x-auth-token"],
   });
   next();
 });
