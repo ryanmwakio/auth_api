@@ -17,16 +17,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 //setting cors
-app.use(
-  cors({
-    exposedHeaders: {
-      //headers
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "*",
-      "Access-Control-Allow-Methods": "*",
-    },
-  })
-);
+app.use(cors());
 
 app.use(logger("dev"));
 app.use(express.json());
