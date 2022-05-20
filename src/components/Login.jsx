@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Switcher from "./Switcher";
 import { Link } from "react-router-dom";
+import { UserContext } from "./../store/userContext";
 
 function Login() {
+  const { name } = useContext(UserContext);
+  console.log(name);
   return (
     <>
       <div className="user-modal-container">
@@ -10,9 +13,7 @@ function Login() {
         <div id="login ">
           <form className="form">
             <p className="fieldset">
-              <label className="image-replace email" for="signin-email">
-                E-mail
-              </label>
+              <label className="image-replace email">E-mail</label>
               <input
                 className="full-width has-padding has-border"
                 id="signin-email"
@@ -25,9 +26,7 @@ function Login() {
             </p>
 
             <p className="fieldset">
-              <label className="image-replace password" for="signin-password">
-                Password
-              </label>
+              <label className="image-replace password">Password</label>
               <input
                 className="full-width has-padding has-border"
                 id="signin-password"
@@ -41,8 +40,8 @@ function Login() {
             </p>
 
             <p className="fieldset">
-              <input type="checkbox" id="remember-me" checked />
-              <label for="remember-me">Remember me</label>
+              <input type="checkbox" id="remember-me" />
+              <label>Remember me</label>
             </p>
 
             <p className="fieldset">

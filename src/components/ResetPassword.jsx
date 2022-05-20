@@ -13,9 +13,7 @@ function ResetPassword() {
 
           <form className="form">
             <p className="fieldset">
-              <label className="image-replace email" for="reset-email">
-                E-mail
-              </label>
+              <label className="image-replace email">E-mail</label>
               <input
                 className="full-width has-padding has-border"
                 id="reset-email"

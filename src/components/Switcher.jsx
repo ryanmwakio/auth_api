@@ -11,7 +11,7 @@ function Switcher() {
 
   return (
     <>
-      <ul class="switcher">
+      <ul className="switcher">
         <li>
           <Link to="/login" className={path === "/login" ? "selected" : ""}>
             Sign in

@@ -9,9 +9,7 @@ function Register() {
         <div id="signup">
           <form className="form">
             <p className="fieldset">
-              <label className="image-replace username" for="signup-username">
-                Username
-              </label>
+              <label className="image-replace username">Username</label>
               <input
                 className="full-width has-padding has-border"
                 id="signup-username"
@@ -24,9 +22,7 @@ function Register() {
             </p>
 
             <p className="fieldset">
-              <label className="image-replace email" for="signup-email">
-                E-mail
-              </label>
+              <label className="image-replace email">E-mail</label>
               <input
                 className="full-width has-padding has-border"
                 id="signup-email"
@@ -39,12 +35,10 @@ function Register() {
             </p>
 
             <p className="fieldset">
-              <label className="image-replace username" for="signup-username">
-                Current Location
-              </label>
+              <label className="image-replace username">Current Location</label>
               <input
                 className="full-width has-padding has-border"
-                id="signup-username"
+                id="signup-userlocation"
                 type="text"
                 placeholder="Your Location e.g Nairobi, Kenya"
               />
@@ -54,9 +48,7 @@ function Register() {
             </p>
 
             <p className="fieldset">
-              <label className="image-replace password" for="signup-password">
-                Password
-              </label>
+              <label className="image-replace password">Password</label>
               <input
                 className="full-width has-padding has-border"
                 id="signup-password"
@@ -73,7 +65,7 @@ function Register() {
 
             <p className="fieldset">
               <input type="checkbox" id="accept-terms" />
-              <label for="accept-terms">
+              <label>
                 I agree to the{" "}
                 <a className="accept-terms" href="#0">
                   Terms
