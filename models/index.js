@@ -16,9 +16,6 @@ sequelize = new Sequelize(process.env.DATABASE_URL, {
       rejectUnauthorized: false,
     },
   },
-  define: {
-    underscored: true,
-  },
 });
 
 fs.readdirSync(__dirname)
