@@ -4,20 +4,20 @@ const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 
 let sequelize;
 
-sequelize = new Sequelize({
-  connectionString: `postgres://swjkxydeljjgej:6837693454669aa918d74fb90c1244d1c102627431ceb2d3d07c8fe81191a13c@ec2-3-231-82-226.compute-1.amazonaws.com:5432/dd6rvo0sasqjp0`,
-  //add ssl
+sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: "postgres",
   dialectOptions: {
     ssl: {
       require: true,
       rejectUnauthorized: false,
     },
+  },
+  define: {
+    underscored: true,
   },
 });
 
