@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "postgres",
-    "password": 1234,
-    "database": "auth_api_db",
-    "host": "localhost",
+    "username": "swjkxydeljjgej",
+    "password": "ec2-3-231-82-226.compute-1.amazonaws.com",
+    "database": "dd6rvo0sasqjp0",
+    "host": "ec2-3-231-82-226.compute-1.amazonaws.com",
     "dialect": "postgres"
   },
   "test": {
-    "username": "postgres",
-    "password": 1234,
-    "database": "auth_api_db",
-    "host": "localhost",
+    "username": "swjkxydeljjgej",
+    "password": "ec2-3-231-82-226.compute-1.amazonaws.com",
+    "database": "dd6rvo0sasqjp0",
+    "host": "ec2-3-231-82-226.compute-1.amazonaws.com",
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": 1234,
-    "database": "auth_api_db",
-    "host": "localhost",
+    "username": "swjkxydeljjgej",
+    "password": "ec2-3-231-82-226.compute-1.amazonaws.com",
+    "database": "dd6rvo0sasqjp0",
+    "host": "ec2-3-231-82-226.compute-1.amazonaws.com",
     "dialect": "postgres"
   }
 }
