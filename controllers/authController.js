@@ -57,7 +57,7 @@ exports.postRegister = async (req, res, next) => {
     }
 
     //check if username is already taken
-    let user_Name = await User.findOne({ where: { userName: userName } });
+    let user_Name = await User.findOne({ where: { user_name: userName } });
     if (user_Name) {
       return res.status(400).json({
         statusMessage: "Error",
@@ -86,7 +86,7 @@ exports.postRegister = async (req, res, next) => {
     const newUser = await User.create({
       email: email,
       password: hashedPassword,
-      userName: userName,
+      user_name: userName,
       is_verified: false,
       location_name: location_name,
       location_lat: latitude || 0.0,
