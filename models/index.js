@@ -8,20 +8,11 @@ const db = {};
 
 let sequelize;
 
-sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialect: "postgres",
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-
-    underscore: true,
-    camelCase: true,
-    snake_case: true,
-    pascalCase: true,
-    timestamps: true,
-  },
+//local postgres url
+let postgresUrl = process.env.DATABASE_URL_DEV;
+//connect to postgres
+sequelize = new Sequelize(postgresUrl, {
+  logging: false,
 });
 
 fs.readdirSync(__dirname)
