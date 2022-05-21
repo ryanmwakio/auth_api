@@ -478,3 +478,16 @@ body {
 #reset-password.is-selected {
   display: block;
 }
+
+.message {
+  font-size: .8rem;
+  text-transform: lowercase;
+}
+
+.text-danger {
+  color: #f64747;
+}
+
+.text-success {
+  color: #4caf50;
+}

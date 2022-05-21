@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "./../store/userContext";
 
 function ResetPassword() {
+  let { user, setUser } = useContext(UserContext);
+  console.log(user);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <>
       <div className="user-modal-container">

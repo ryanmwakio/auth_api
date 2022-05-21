@@ -7,19 +7,18 @@ import Register from "./components/Register";
 import Error from "./components/Error";
 import ResetPassword from "./components/ResetPassword";
 import { UserContext } from "./store/userContext";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 
 function App() {
-  let [user, setUser] = useState(null);
+  let [user, setUser] = useState({});
 
-  const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   return (
     <>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Login & Registration</title>
       </Helmet>
-      <UserContext.Provider value={providerValue}>
+      <UserContext.Provider value={{ user, setUser }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
